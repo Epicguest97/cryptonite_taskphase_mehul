@@ -80,7 +80,7 @@ players_df = pd.DataFrame(players_data)
 players_df.to_csv("flattened_players_65536.csv", index=False)
 print("Filtered players saved to flattened_players_65536.csv")
 ```
-![csv](Screenshot 2024-12-17 at 4.07.50 PM.png)
+![csv](d.png)
 ## Step 3: Reconstructing Profile Pictures
 With the filtered players’ pixel arrays, I generated images using Python libraries like PIL (Python Imaging Library) and NumPy.
 ```python
@@ -197,7 +197,7 @@ if not player_row.empty:
 else:
     print(f"PlayerID {player_id_to_find} not found in the dataset.")
 ```
-![pics](./Screenshots/Screenshot 2024-12-17 at 4.07.27 PM.png)
+![pics](./Screenshots/b.png)
 ## Step 4: Sorting Images by PlayerScore
 To sort the images based on player scores for better visualization:
 
@@ -205,7 +205,7 @@ To sort the images based on player scores for better visualization:
 sorted_df = df.sort_values(by=['PlayerScore'], ascending=False)
 print("Sorted players based on PlayerScore.")
 ```
-![sort](./Screenshots/Screenshot 2024-12-17 at 4.11.30 PM.png)
+![sort](./Screenshots/c.png)
 ## Final Outcome
 - 20 Players Identified: By filtering pixel arrays of size 65,536, I identified all cheating players.
 - Profile Pictures: The reconstructed images revealed letters, which formed the flag when arranged correctly.
