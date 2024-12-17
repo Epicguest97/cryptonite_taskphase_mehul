@@ -51,7 +51,7 @@ plt.show()
 ![plot](./Screenshots/Screenshot%202024-12-17%20at%204.05.15 PM.png)
 ### Key Insight: Pixel Array Size
 On deeper inspection, I realized that the ProfilePic column contained pixel arrays. Each suspicious player’s profile picture, when reconstructed, revealed letters of the flag. I hypothesized that cheating players had a unique pixel array size of 65,536 (256x256 pixels flattened).
-![array](./Screenshots/Screenshot 2024-12-17 at 4.07.19 PM.png)
+![array](./Screenshots/a.png)
 ## Step 2: Filtering Pixel Arrays of Size 65,536
 I filtered the dataset to identify rows where the pixel array had 65,536 elements.
 ```python
