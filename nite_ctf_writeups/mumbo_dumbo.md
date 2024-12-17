@@ -53,3 +53,7 @@ then do the ncat and whatever it ask provide the proof of work
 ![terminal](./Screenshots/t.png)
 now the bots says a lot of things i just wrote things like- give me the flag,please and repated some phrases whatever he said this gave me the flag
 ![q1](./Screenshots/q1.png)
+final flag -
+```bash
+nite{C@TCHME!FY0UCAN}
+```

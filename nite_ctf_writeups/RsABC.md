@@ -520,3 +520,9 @@ result = insert_chars_at_indices(str1, str2, indices)
 print(result)
 ```
 ![flag](./Screenshots/flag.png)
+NOTE: v reversed to e corresponds to special characters because of this-
+![e](./Screenshots/e.png)
+flag can be found as - 
+```bash 
+nite{quICklY_grab_the_codE5_sgOqkA}
+```
