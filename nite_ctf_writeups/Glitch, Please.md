@@ -51,7 +51,7 @@ plt.show()
 ![plot](./Screenshots/Screenshot%202024-12-17%20at%204.05.15 PM.png)
 ### Key Insight: Pixel Array Size
 On deeper inspection, I realized that the ProfilePic column contained pixel arrays. Each suspicious player’s profile picture, when reconstructed, revealed letters of the flag. I hypothesized that cheating players had a unique pixel array size of 65,536 (256x256 pixels flattened).
-
+![array](./Screenshots/Screenshot 2024-12-17 at 4.07.19 PM.png)
 ## Step 2: Filtering Pixel Arrays of Size 65,536
 I filtered the dataset to identify rows where the pixel array had 65,536 elements.
 ```python
@@ -80,7 +80,7 @@ players_df = pd.DataFrame(players_data)
 players_df.to_csv("flattened_players_65536.csv", index=False)
 print("Filtered players saved to flattened_players_65536.csv")
 ```
-
+![csv](Screenshot 2024-12-17 at 4.07.50 PM.png)
 ## Step 3: Reconstructing Profile Pictures
 With the filtered players’ pixel arrays, I generated images using Python libraries like PIL (Python Imaging Library) and NumPy.
 ```python
@@ -88,7 +88,6 @@ from PIL import Image
 import numpy as np
 import os
 import ast
-
 # Load filtered players
 df = pd.read_csv("flattened_players_65536.csv")
 
@@ -108,7 +107,97 @@ for index, row in df.iterrows():
         print(f"Error processing row {index}: {e}")
 ```
 Result: This process generated the profile pictures of all 20 cheating players. When viewed, the images clearly revealed letters of the flag.
+two images were not formed because they were not of form of rgb[(1,0,1),(1,0,1)...] but of rgba wrote a code for one missing letter 
+```python
+import pandas as pd
+import ast
+import json  # To save the array in JSON format
 
+# Load the dataset
+file_name = "flattened_players_65536.csv"  # Replace with your file name
+df = pd.read_csv(file_name)
+
+# Specify the PlayerID for which you want to extract the ProfilePic array
+player_id_to_find = 9599  # Replace with the PlayerID you're interested in
+
+# Find the row corresponding to the specified PlayerID
+player_row = df[df['PlayerID'] == player_id_to_find]
+
+if not player_row.empty:
+    # Extract the ProfilePic column for the player
+    profile_pic_data = player_row.iloc[0]['ProfilePic (256x256)']
+    
+    # Convert the string representation to an actual list (flattened array)
+    try:
+        profile_pic_array = ast.literal_eval(profile_pic_data)  # Convert string to list
+        
+        # Step 1: Save the extracted array in JSON format
+        json_file_name = f"profile_pic_player_{player_id_to_find}.json"
+        with open(json_file_name, 'w') as json_file:
+            json.dump(profile_pic_array, json_file)  # Save array as JSON
+
+        print(f"ProfilePic array for PlayerID {player_id_to_find} has been saved to {json_file_name}.")
+        
+        # Step 2: Optionally, save it as a plain text file (for inspection or other use)
+        txt_file_name = f"profile_pic_player_{player_id_to_find}.txt"
+        with open(txt_file_name, 'w') as txt_file:
+            for row in profile_pic_array:
+                txt_file.write(str(row) + '\n')  # Write each row of the array as a line in the file
+
+        print(f"ProfilePic array for PlayerID {player_id_to_find} has also been saved to {txt_file_name}.")
+        
+    except Exception as e:
+        print(f"Error processing the ProfilePic for PlayerID {player_id_to_find}: {e}")
+else:
+    print(f"PlayerID {player_id_to_find} not found in the dataset.")
+```
+and made its picture -
+```python
+import pandas as pd
+import numpy as np
+from PIL import Image
+import ast
+
+# Load the dataset
+file_name = "flattened_players_65536.csv"  # Replace with your file name
+df = pd.read_csv(file_name)
+
+# Specify the PlayerID you want to generate an image for
+player_id_to_find = 9599  # Replace with the PlayerID you're interested in
+
+# Step 1: Find the row corresponding to the specified PlayerID
+player_row = df[df['PlayerID'] == player_id_to_find]
+
+# Step 2: Extract the ProfilePic column for the player
+if not player_row.empty:
+    profile_pic_data = player_row.iloc[0]['ProfilePic (256x256)']
+    
+    # Step 3: Convert the string representation to an actual list of values (flattened RGBA values)
+    try:
+        profile_pic_flattened = ast.literal_eval(profile_pic_data)  # Convert string to list
+        
+        # Step 4: Check if the array has the correct length (65536 elements for a 256x256 RGBA image)
+        if len(profile_pic_flattened) == 65536:
+            # Step 5: Reshape the array to a 256x256 image with 4 channels (RGBA)
+            profile_pic_array = np.array(profile_pic_flattened, dtype=np.uint8)
+            profile_pic_array = profile_pic_array.reshape((256, 256, 4))  # Reshaping to 256x256x4
+            
+            # Step 6: Create an image from the reshaped array using Pillow (RGBA mode)
+            img = Image.fromarray(profile_pic_array, mode='RGBA')  # RGBA mode for 4 channels
+            
+            # Step 7: Save or display the image
+            img.save(f"profile_pic_player_{player_id_to_find}.png")
+            img.show()  # This will open the image using the default image viewer
+            print(f"Image for PlayerID {player_id_to_find} has been saved as 'profile_pic_player_{player_id_to_find}.png'.")
+        
+        else:
+            print(f"The flattened array does not have 65536 elements. It has {len(profile_pic_flattened)} elements.")
+    except Exception as e:
+        print(f"Error processing the ProfilePic for PlayerID {player_id_to_find}: {e}")
+else:
+    print(f"PlayerID {player_id_to_find} not found in the dataset.")
+```
+![pics](./Screenshots/Screenshot 2024-12-17 at 4.07.27 PM.png)
 ## Step 4: Sorting Images by PlayerScore
 To sort the images based on player scores for better visualization:
 
@@ -116,6 +205,7 @@ To sort the images based on player scores for better visualization:
 sorted_df = df.sort_values(by=['PlayerScore'], ascending=False)
 print("Sorted players based on PlayerScore.")
 ```
+![sort](./Screenshots/Screenshot 2024-12-17 at 4.11.30 PM.png)
 ## Final Outcome
 - 20 Players Identified: By filtering pixel arrays of size 65,536, I identified all cheating players.
 - Profile Pictures: The reconstructed images revealed letters, which formed the flag when arranged correctly.
