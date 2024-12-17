@@ -80,7 +80,7 @@ players_df = pd.DataFrame(players_data)
 players_df.to_csv("flattened_players_65536.csv", index=False)
 print("Filtered players saved to flattened_players_65536.csv")
 ```
-![csv](d.png)
+![csv](./Screenshots/d.png)
 ## Step 3: Reconstructing Profile Pictures
 With the filtered players’ pixel arrays, I generated images using Python libraries like PIL (Python Imaging Library) and NumPy.
 ```python
