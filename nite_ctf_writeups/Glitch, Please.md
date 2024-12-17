@@ -48,7 +48,7 @@ plt.title("Suspicious Players Analysis")
 plt.colorbar(label="Suspicious (1=Yes, 0=No)")
 plt.show()
 ```
-
+![plot](./Screenshots/Screenshot%202024-12-17%20at%204.05.15 PM.png)
 ### Key Insight: Pixel Array Size
 On deeper inspection, I realized that the ProfilePic column contained pixel arrays. Each suspicious player’s profile picture, when reconstructed, revealed letters of the flag. I hypothesized that cheating players had a unique pixel array size of 65,536 (256x256 pixels flattened).
 
