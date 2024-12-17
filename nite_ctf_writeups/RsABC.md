@@ -236,6 +236,7 @@ final_message = reverse_alphabet_on_message("mrg fo iy gs xlwV hZ")
 print("Transformed message:", final_message)
 ```
 ![half](./Screenshots/half.png)
+
 4. i have the greek letters of prime characters convert them to english
 ```python
 # Define the original Greek-to-English mapping
@@ -337,8 +338,10 @@ else:
     print("Recovered Message: ", recovered_text)
 ```
 ![other](./Screenshots/other.png)
+
 5. now i try to reverse this googly function
 ![algo](./Screenshots/algo.png)
+
 6. i have the final ciphertext and the lan values these are enough to reverse the xor 
 ```python 
 import sympy as sp
@@ -389,8 +392,10 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
 7. after that i have the intermediate ciphertext 
 ![inter](./Screenshots/inter.png)
+
 8. performed reverse rsa to get the message 
 ```python
 import sympy as sp
@@ -469,6 +474,7 @@ if __name__ == '__main__':
     main()
 ```
 ![final](./Screenshots/final.png)
+
 9. combine them to get the flag
 ```python
 def reverse_alphabet(char):
