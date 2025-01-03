@@ -19,6 +19,19 @@ to traditional Python lists.
 
 - You can also generate random arrays using numpy.random, which is
   useful for simulations and testing.
+  
+# Implement:
+```python
+# 1. Array Creation
+# Creating arrays using different methods
+array_from_list = np.array([1, 2, 3, 4, 5])  # From a Python list
+array_of_zeros = np.zeros((3, 3))             # Array of zeros
+array_of_ones = np.ones((2, 4))              # Array of ones
+array_empty = np.empty((2, 2))               # Array with uninitialized values
+array_with_arange = np.arange(0, 10, 2)      # Values from 0 to 10 with a step of 2
+array_with_linspace = np.linspace(0, 1, 5)   # 5 evenly spaced values from 0 to 1
+```
+
 
 **2. Array Indexing and Slicing**
 
