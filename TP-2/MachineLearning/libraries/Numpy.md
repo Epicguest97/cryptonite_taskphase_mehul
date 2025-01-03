@@ -59,6 +59,26 @@ manipulation of array subsets.
 - Multi-dimensional arrays can be sliced along different axes, enabling
   manipulation of 2D or 3D data arrays with ease.
 
+## Implement
+```python
+array = np.arange(10)  # Array from 0 to 9
+slice1 = array[2:7]   # Elements from index 2 to 6
+slice2 = array[:5]    # First 5 elements
+slice3 = array[5:]    # Elements from index 5 to the end
+slice4 = array[::2]   # Every second element
+```
+```python
+# Applying a boolean condition
+bool_condition = array_bool > 5  # Elements greater than 5
+filtered_array = array_bool[bool_condition]
+# Selecting specific indices
+indices = [0, 2, 4]  # Selecting elements at index 0, 2, and 4
+fancy_indexed_array = array_fancy[indices]
+# Using fancy indexing with negative indices
+negative_indices = [-1, -3, -5]  # Selecting last, third-last, and fifth-last elements
+fancy_indexed_neg = array_fancy[negative_indices]
+```
+
 **3. Array Operations and Broadcasting**
 
 One of NumPy's strengths is its ability to perform element-wise
@@ -66,18 +86,45 @@ operations and apply mathematical functions efficiently across entire
 arrays without loops. This is known as **vectorization**.
 
 - Vectorized operations include addition, subtraction, multiplication,
-  division, and more. For instance:
-
-> array1 = np.array(\[1, 2, 3\])
->
-> array2 = np.array(\[4, 5, 6\])
->
-> result = array1 + array2
-
+  division, and more.
 - **Broadcasting** allows arrays of different shapes to be used together
   in operations, by expanding the smaller array across the larger one.
   This leads to more concise and readable code.
 
+## Implement
+```python
+add_result = array1 + array2
+mul_result = array1 * array2
+div_result = array1 / array2
+# 2. Broadcasting
+array3 = np.array([1, 2, 3])
+array4 = np.array([[10], [20], [30]])  # Broadcasting 1D to 2D
+broadcast_result = array3 + array4
+
+# 4. Linear Algebra Operations
+matrix1 = np.array([[1, 2], [3, 4]])
+matrix2 = np.array([[5, 6], [7, 8]])
+
+# Dot product and matrix multiplication
+dot_result = np.dot(matrix1, matrix2)
+matmul_result = np.matmul(matrix1, matrix2)
+
+# Matrix inverse and eigenvalues/eigenvectors
+matrix3 = np.array([[2, 1], [1, 3]])
+inv_result = np.linalg.inv(matrix3)
+eig_values, eig_vectors = np.linalg.eig(matrix3)
+```
+```python
+# Horizontal stacking
+hstack_result = np.hstack((array1, array2))
+
+# Vertical stacking
+vstack_result = np.vstack((array1, array2))
+
+# Splitting arrays
+array_to_split = np.array([10, 20, 30, 40, 50, 60])
+split_result = np.split(array_to_split, 3)  # Splitting into 3 equal parts
+```
 **4. Aggregation and Statistical Functions**
 
 NumPy includes a wide range of mathematical functions that can be
@@ -91,6 +138,15 @@ and perform data analysis.
   row-wise or column-wise) can be done using parameters like axis=0 or
   axis=1.
 
+```python
+# Sum, mean, max, and min
+sum_result = np.sum(array5)
+mean_result = np.mean(array5)
+max_result = np.max(array5)
+min_result = np.min(array5)
+sum_axis_0 = np.sum(array5, axis=0)  # Sum along columns
+sum_axis_1 = np.sum(array5, axis=1)  # Sum along rows
+```
 **5. Linear Algebra and Matrix Operations**
 
 NumPy includes a dedicated submodule, numpy.linalg, for performing
@@ -103,6 +159,11 @@ inverses, and eigenvalues.
 - NumPy arrays can be used to represent vectors and matrices, and
   operations such as solving linear equations are streamlined.
 
+```python
+# Transpose using the T attribute
+transposed_matrix = matrix.T
+print("Transposed matrix:\n", transposed_matrix)
+```
 **6. Shape Manipulation**
 
 Reshaping arrays is a common task when preparing data for machine
