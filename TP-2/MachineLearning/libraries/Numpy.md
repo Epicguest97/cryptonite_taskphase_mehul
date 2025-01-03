@@ -1,4 +1,4 @@
-**Report on Learning NumPy**
+# Report on Learning NumPy
 
 **NumPy** is an essential library for numerical computing in Python,
 offering robust data structures and efficient computation methods. After
@@ -20,7 +20,7 @@ to traditional Python lists.
 - You can also generate random arrays using numpy.random, which is
   useful for simulations and testing.
   
-# Implement:
+## Implement:
 ```python
 # 1. Array Creation
 # Creating arrays using different methods
