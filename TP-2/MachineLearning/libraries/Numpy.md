@@ -22,7 +22,6 @@ to traditional Python lists.
   
 ## Implement:
 ```python
-# 1. Array Creation
 # Creating arrays using different methods
 array_from_list = np.array([1, 2, 3, 4, 5])  # From a Python list
 array_of_zeros = np.zeros((3, 3))             # Array of zeros
@@ -31,8 +30,23 @@ array_empty = np.empty((2, 2))               # Array with uninitialized values
 array_with_arange = np.arange(0, 10, 2)      # Values from 0 to 10 with a step of 2
 array_with_linspace = np.linspace(0, 1, 5)   # 5 evenly spaced values from 0 to 1
 ```
+```python
+# dtype defines the type of elements in the array
+array_int = np.array([1, 2, 3], dtype=np.int32)   # Integer type array
+array_float = np.array([1.1, 2.2, 3.3], dtype=np.float64)  # Float type array
+array_bool = np.array([1, 0, 1], dtype=np.bool_)  # Boolean type array
+```
+```python
+# Checking the shape and dimensions of arrays
+print("Shape of array_of_zeros:", array_of_zeros.shape)
+print("Number of dimensions (ndim) of array_of_zeros:", array_of_zeros.ndim)
 
-
+# Reshaping arrays
+array_to_reshape = np.arange(12)  # Array with 12 elements
+reshaped_array = array_to_reshape.reshape(3, 4)  # Reshaping to 3 rows and 4 columns
+print("Original array:", array_to_reshape)
+print("Reshaped array (3x4):\n", reshaped_array)
+```
 **2. Array Indexing and Slicing**
 
 Just like lists in Python, NumPy arrays support indexing and slicing,
