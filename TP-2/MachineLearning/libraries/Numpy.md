@@ -36,17 +36,6 @@ array_int = np.array([1, 2, 3], dtype=np.int32)   # Integer type array
 array_float = np.array([1.1, 2.2, 3.3], dtype=np.float64)  # Float type array
 array_bool = np.array([1, 0, 1], dtype=np.bool_)  # Boolean type array
 ```
-```python
-# Checking the shape and dimensions of arrays
-print("Shape of array_of_zeros:", array_of_zeros.shape)
-print("Number of dimensions (ndim) of array_of_zeros:", array_of_zeros.ndim)
-
-# Reshaping arrays
-array_to_reshape = np.arange(12)  # Array with 12 elements
-reshaped_array = array_to_reshape.reshape(3, 4)  # Reshaping to 3 rows and 4 columns
-print("Original array:", array_to_reshape)
-print("Reshaped array (3x4):\n", reshaped_array)
-```
 **2. Array Indexing and Slicing**
 
 Just like lists in Python, NumPy arrays support indexing and slicing,
@@ -163,6 +152,26 @@ inverses, and eigenvalues.
 # Transpose using the T attribute
 transposed_matrix = matrix.T
 print("Transposed matrix:\n", transposed_matrix)
+matrix1 = np.array([[1, 2], [3, 4]])
+matrix2 = np.array([[5, 6], [7, 8]])
+
+# Dot product
+dot_product = np.dot(matrix1, matrix2)
+# 2. Using numpy.matmul() for Matrix Multiplication
+matmul_result = np.matmul(matrix1, matrix2)
+# 3. Solving Linear Equations
+# Representing the system of equations:
+# 2x + y = 5
+# x + 3y = 7
+A = np.array([[2, 1], [1, 3]])  # Coefficient matrix
+B = np.array([5, 7])            # Constants vector
+
+# Solving for x and y
+solution = np.linalg.solve(A, B)
+print("Coefficient matrix (A):\n", A)
+print("Constants vector (B):", B)
+print("Solution to the system of equations (x, y):", solution)
+
 ```
 **6. Shape Manipulation**
 
@@ -174,6 +183,17 @@ altering array shapes without changing the underlying data.
   numpy.transpose() allow you to modify the structure of an array to fit
   specific needs.
 
+```python
+# Checking the shape and dimensions of arrays
+print("Shape of array_of_zeros:", array_of_zeros.shape)
+print("Number of dimensions (ndim) of array_of_zeros:", array_of_zeros.ndim)
+
+# Reshaping arrays
+array_to_reshape = np.arange(12)  # Array with 12 elements
+reshaped_array = array_to_reshape.reshape(3, 4)  # Reshaping to 3 rows and 4 columns
+print("Original array:", array_to_reshape)
+print("Reshaped array (3x4):\n", reshaped_array)
+```
 **7. Advanced Features:**
 
 Additional advanced features of NumPy include:
