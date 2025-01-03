@@ -66,7 +66,7 @@ less-than values. This feature is analogous to filtering data in SQL,
 making it an essential skill for navigating through large datasets.
 
 Assignments can also be done easily, meaning values within the DataFrame
-can be updated or new columns can be created based on existing data​(
+can be updated or new columns can be created based on existing data​
 
 ```python
 # 2. Indexing and Slicing
@@ -231,7 +231,7 @@ is also covered in detail. The concat() function enables appending one
 DataFrame to another either vertically or horizontally. Meanwhile, the
 merge() function is analogous to SQL joins, allowing for the combination
 of DataFrames based on shared keys or columns. This is especially useful
-for integrating multiple datasets into a single cohesive structure​(
+for integrating multiple datasets into a single cohesive structure​
 
 
 
