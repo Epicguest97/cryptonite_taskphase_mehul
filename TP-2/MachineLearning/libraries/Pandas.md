@@ -1,6 +1,6 @@
 # Report on Pandas
 
- Pandas course offers a structured approach to mastering data
+ Pandas  offers a structured approach to mastering data
 manipulation in Python. It covers several key topics that build a strong
 foundation for working with data efficiently and effectively. Below is a
 detailed exploration of the key subtopics from the course:
@@ -79,6 +79,11 @@ print("\nSlicing series_from_list (indices 'b' to 'd'):\n", series_from_list['b'
 # Boolean indexing
 filtered_series = series_from_list[series_from_list > 20]
 print("\nFiltered series (values > 20):\n", filtered_series)
+# Dropping a column
+dropped_column_df = dataframe_from_dict.drop(columns=['Passed'])
+# Using .loc and .iloc
+print("\nRow selection with .loc (Name and Age columns for index 1):\n", df.loc[1, ['Name', 'Age']])
+print("\nRow selection with .iloc (first two rows, first two columns):\n", df.iloc[:2, :2])
 ```
 **3. Summary Functions and Maps**
 
@@ -93,7 +98,29 @@ tendencies, spread, and shape of the data's distribution, all in one go.
 Additionally, the **map()** function allows for applying a
 transformation to an entire Series. This comes in handy when values in a
 column need to be modified or mapped to new values based on a function,
-making transformations straightforward and efficient​(
+making transformations straightforward and efficient​
+```python 
+sum_value = df['Value'].sum()  # Sum of values
+mean_value = df['Value'].mean()  # Mean of values
+max_value = df['Value'].max()  # Maximum value
+grouped = df.groupby('Category')['Value'].mean()
+```
+```python
+data = {
+    'Category': ['A', 'B', 'A', 'B', 'A'],
+    'Subcategory': ['X', 'X', 'Y', 'Y', 'X'],
+    'Value': [10, 20, 30, 40, 50]
+}
+
+df = pd.DataFrame(data)
+# Creating a pivot table
+pivot_df = df.pivot_table(values='Value', index='Category', columns='Subcategory', aggfunc='sum')
+print(pivot_df)
+
+# Using pivot for reshaping
+pivot_reshaped = df.pivot(index='Category', columns='Subcategory', values='Value')
+print(pivot_reshaped)
+```
 
 **4. Grouping and Sorting**
 
@@ -107,7 +134,36 @@ these groups.
 Additionally, the course covers how to sort data either by index or by
 column values using the sort_values() and sort_index() methods. This
 feature becomes especially useful when dealing with time series or any
-scenario where the order of data is critical for analysis​(
+scenario where the order of data is critical for analysis​
+```python 
+# Apply a custom aggregation function
+def custom_agg(x):
+    return x.sum() - x.min()
+
+custom_group = df.groupby('Category')['Value'].apply(custom_agg)
+
+# Filter groups by condition
+filtered_group = df.groupby('Category').filter(lambda x: x['Value'].mean() > 25)
+df1 = pd.DataFrame({
+    'key': ['A', 'B', 'C'],
+    'value1': [1, 2, 3]
+})
+
+df2 = pd.DataFrame({
+    'key': ['B', 'C', 'D'],
+    'value2': [4, 5, 6]
+})
+
+# SQL-style merge on the 'key' column
+merged_df = pd.merge(df1, df2, on='key', how='inner')
+# Joining two DataFrames on index
+df4 = pd.DataFrame({
+    'value2': [10, 11]
+}, index=['A', 'B'])
+
+joined_df = df1.join(df4)
+print(joined_df)
+```
 
 **5. Data Types and Missing Values**
 
@@ -120,7 +176,38 @@ introduced for altering or imputing values in a DataFrame.
 Moreover, ensuring that data is in the correct format is important for
 accurate analysis. Pandas allows for easy conversion of data types using
 astype(), ensuring that numerical, categorical, or datetime data are
-handled appropriately based on the context of the analysis​(
+handled appropriately based on the context of the analysis​
+```python
+# Sample data with missing values
+data = {
+    'Category': ['A', 'B', 'C', None, 'E'],
+    'Value': [10, None, 30, 40, None]
+}
+
+df = pd.DataFrame(data)
+
+# Check for missing values
+print(df.isna())
+
+# Fill missing values with a constant value (e.g., 0)
+df_filled = df.fillna(0)
+print(df_filled)
+
+# Drop rows with any missing values
+df_dropped = df.dropna()
+print(df_dropped)
+
+# Drop columns with any missing values
+df_dropped_columns = df.dropna(axis=1)
+print(df_dropped_columns)
+df_no_duplicates = df.drop_duplicates()
+# Sorting by index
+df_sorted_index = df.sort_index(ascending=False)
+
+# Sorting by values (e.g., 'Value' column)
+df_sorted_values = df.sort_values(by='Value', ascending=False)
+
+```
 
 **6. Renaming and Combining Data**
 
@@ -128,6 +215,16 @@ Data often comes from multiple sources, and combining datasets is a
 common task in data analysis. The course covers how to **rename**
 columns or rows using rename(), ensuring that datasets maintain clarity
 and relevance.
+```python
+# Renaming columns
+df_renamed_columns = df.rename(columns={'Category': 'Type', 'Value': 'Amount'})
+print(df_renamed_columns)
+
+# Renaming index
+df_renamed_index = df.rename(index={0: 'row1', 1: 'row2', 2: 'row3', 3: 'row4', 4: 'row5'})
+print(df_renamed_index)
+
+```
 
 **Combining data** through merging or concatenating multiple DataFrames
 is also covered in detail. The concat() function enables appending one
