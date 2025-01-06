@@ -18,9 +18,9 @@ Mathematically, for a dataset \( D = \{(x_1, y_1), (x_2, y_2), \ldots, (x_n, y_n
 3. Combine predictions:
    - **Classification**: Majority vote
    - **Regression**: Average prediction
-   \[
+   $$
    \hat{y} = \frac{1}{B} \sum_{b=1}^B h_b(x) \quad \text{(for regression)}
-   \]
+   $$
 
 ### 2. **Feature Subset Selection**
 At each split of a tree, a random subset of features is selected for consideration. This reduces correlation between trees and increases diversity, improving overall performance.
@@ -83,3 +83,7 @@ Random Forest is a versatile and reliable algorithm suitable for a wide range of
 
 ---
 
+## References
+- Breiman, L. (2001). Random Forests. Machine Learning, 45(1), 5–32.
+- Scikit-learn Documentation: https://scikit-learn.org/
+x
