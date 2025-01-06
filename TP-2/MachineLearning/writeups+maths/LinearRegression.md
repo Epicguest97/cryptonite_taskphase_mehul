@@ -28,30 +28,30 @@ Linear regression models the relationship between a dependent variable (target) 
 
 ### Simple Linear Regression
 
-Simple linear regression involves a single independent variable \( x \) and models the relationship as:
+Simple linear regression involves a single independent variable $x$ and models the relationship as:
 
-\[
+$$
 \hat{y} = \beta_0 + \beta_1 x
-\]
+$$
 
 Where:
-- \( \hat{y} \): Predicted value of the dependent variable.
-- \( \beta_0 \): Intercept (value of \( y \) when \( x = 0 \)).
-- \( \beta_1 \): Slope of the line (rate of change of \( y \) with respect to \( x \)).
-- \( x \): Independent variable.
+- $\hat{y}$: Predicted value of the dependent variable.
+- $\beta_0$: Intercept (value of $y$ when $x = 0$).
+- $\beta_1$: Slope of the line (rate of change of $y$ with respect to $x$).
+- $x$: Independent variable.
 
 ### Multiple Linear Regression
 
 Multiple linear regression extends the simple linear regression model to multiple independent variables:
 
-\[
+$$
 \hat{y} = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p
-\]
+$$
 
 Where:
-- \( p \): Number of independent variables.
-- \( x_1, x_2, \dots, x_p \): Independent variables.
-- \( \beta_1, \beta_2, \dots, \beta_p \): Coefficients corresponding to each independent variable.
+- $p$: Number of independent variables.
+- $x_1, x_2, \dots, x_p$: Independent variables.
+- $\beta_1, \beta_2, \dots, \beta_p$: Coefficients corresponding to each independent variable.
 
 ---
 
@@ -61,61 +61,61 @@ Where:
 
 The general form of a linear regression model can be expressed in matrix notation as:
 
-\[
+$$
 \mathbf{y} = \mathbf{X} \boldsymbol{\beta} + \boldsymbol{\epsilon}
-\]
+$$
 
 Where:
-- \( \mathbf{y} \): Vector of observed values (size \( n \times 1 \)).
-- \( \mathbf{X} \): Design matrix of input features (size \( n \times (p+1) \)), where the first column is all ones (for the intercept).
-- \( \boldsymbol{\beta} \): Vector of coefficients (size \( (p+1) \times 1 \)).
-- \( \boldsymbol{\epsilon} \): Vector of errors (residuals).
+- $\mathbf{y}$: Vector of observed values (size $n \times 1$).
+- $\mathbf{X}$: Design matrix of input features (size $n \times (p+1)$), where the first column is all ones (for the intercept).
+- $\boldsymbol{\beta}$: Vector of coefficients (size $(p+1) \times 1$).
+- $\boldsymbol{\epsilon}$: Vector of errors (residuals).
 
 ### Cost Function
 
 The cost function measures the error between the predicted values and the actual values. For linear regression, the cost function is the Mean Squared Error (MSE):
 
-\[
+$$
 J(\boldsymbol{\beta}) = \frac{1}{2n} \sum_{i=1}^n (\hat{y}_i - y_i)^2
-\]
+$$
 
 In matrix form:
 
-\[
+$$
 J(\boldsymbol{\beta}) = \frac{1}{2n} (\mathbf{X} \boldsymbol{\beta} - \mathbf{y})^T (\mathbf{X} \boldsymbol{\beta} - \mathbf{y})
-\]
+$$
 
 Where:
-- \( \hat{y}_i \): Predicted value for observation \( i \).
-- \( y_i \): Actual value for observation \( i \).
+- $\hat{y}_i$: Predicted value for observation $i$.
+- $y_i$: Actual value for observation $i$.
 
 ### Gradient Descent Optimization
 
 Gradient descent is an iterative optimization algorithm used to minimize the cost function:
 
 1. **Update Rule:**
-   \[
+   $$
    \boldsymbol{\beta} \leftarrow \boldsymbol{\beta} - \alpha \nabla J(\boldsymbol{\beta})
-   \]
+   $$
 
    Where:
-   - \( \alpha \): Learning rate.
-   - \( \nabla J(\boldsymbol{\beta}) \): Gradient of the cost function.
+   - $\alpha$: Learning rate.
+   - $\nabla J(\boldsymbol{\beta})$: Gradient of the cost function.
 
 2. **Gradient of Cost Function:**
-   \[
+   $$
    \nabla J(\boldsymbol{\beta}) = \frac{1}{n} \mathbf{X}^T (\mathbf{X} \boldsymbol{\beta} - \mathbf{y})
-   \]
+   $$
 
 ### Normal Equation
 
 An analytical solution to linear regression can be obtained using the Normal Equation:
 
-\[
+$$
 \boldsymbol{\beta} = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{y}
-\]
+$$
 
-This avoids iterative optimization but requires inversion of \( \mathbf{X}^T \mathbf{X} \), which can be computationally expensive for large datasets.
+This avoids iterative optimization but requires inversion of $\mathbf{X}^T \mathbf{X}$, which can be computationally expensive for large datasets.
 
 ---
 
