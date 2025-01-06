@@ -35,24 +35,24 @@ If the total number of features is \( p \):
 
 ### Entropy (for Classification)
 Random Forest splits nodes in each tree to maximize information gain. Information entropy is calculated as:
-\[
+$$
 H(S) = - \sum_{i=1}^c p_i \log_2(p_i)
-\]
+$$
 where:
 - \( c \): Number of classes
 - \( p_i \): Proportion of samples belonging to class \( i \) in set \( S \)
 
 ### Gini Impurity (for Classification)
 Another common criterion for splitting nodes:
-\[
+$$
 G(S) = 1 - \sum_{i=1}^c p_i^2
-\]
+$$
 
 ### Mean Squared Error (for Regression)
 For regression tasks, nodes are split to minimize the Mean Squared Error (MSE):
-\[
+$$
 \text{MSE} = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y})^2
-\]
+$$
 
 ---
 
@@ -75,4 +75,11 @@ For regression tasks, nodes are split to minimize the Mean Squared Error (MSE):
 1. **Finance**: Credit scoring and fraud detection.
 2. **Healthcare**: Disease prediction and patient classification.
 3. **E-commerce**: Recommendation systems.
+
+---
+
+## Conclusion
+Random Forest is a versatile and reliable algorithm suitable for a wide range of tasks. Its ability to handle non-linear data, reduce overfitting, and provide feature importance makes it a popular choice among data scientists and researchers.
+
+---
 
