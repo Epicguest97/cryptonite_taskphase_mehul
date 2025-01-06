@@ -1,140 +1,141 @@
-# Ensemble Models in Machine Learning
+# Linear Regression: A Comprehensive Overview
 
-Ensemble models combine the predictions of multiple base models to improve the accuracy, robustness, and generalization of machine learning systems. This report discusses ensemble methods, their mathematics, and their advantages.
+Linear regression is one of the most fundamental and widely used algorithms in machine learning and statistics. It is a simple yet powerful technique for predicting a continuous dependent variable based on one or more independent variables. This report explores the theory, mathematics, and practical aspects of linear regression.
 
 ## Table of Contents
 
 1. [Introduction](#introduction)
-2. [Types of Ensemble Methods](#types-of-ensemble-methods)
-   - [Bagging](#bagging)
-   - [Boosting](#boosting)
-   - [Stacking](#stacking)
-3. [Mathematics of Ensemble Models](#mathematics-of-ensemble-models)
-   - [Weighted Averaging](#weighted-averaging)
-   - [Bagging Mathematics](#bagging-mathematics)
-   - [Boosting Mathematics](#boosting-mathematics)
-4. [Advantages and Applications](#advantages-and-applications)
+2. [Types of Linear Regression](#types-of-linear-regression)
+   - [Simple Linear Regression](#simple-linear-regression)
+   - [Multiple Linear Regression](#multiple-linear-regression)
+3. [Mathematics of Linear Regression](#mathematics-of-linear-regression)
+   - [Model Equation](#model-equation)
+   - [Cost Function](#cost-function)
+   - [Gradient Descent Optimization](#gradient-descent-optimization)
+   - [Normal Equation](#normal-equation)
+4. [Assumptions of Linear Regression](#assumptions-of-linear-regression)
+5. [Applications](#applications)
 
 ---
 
 ## Introduction
 
-Ensemble learning leverages the strengths of multiple models to achieve better predictive performance. By aggregating predictions from several base learners, ensemble methods reduce bias, variance, or both.
+Linear regression models the relationship between a dependent variable (target) and one or more independent variables (features) by fitting a linear equation to observed data. It assumes a linear relationship between the variables.
 
 ---
 
-## Types of Ensemble Methods
+## Types of Linear Regression
 
-### Bagging
+### Simple Linear Regression
 
-Bagging (Bootstrap Aggregating) reduces variance by training multiple models independently and averaging their outputs.
+Simple linear regression involves a single independent variable $x$ and models the relationship as:
 
-1. **Algorithm:**
-   - Train models on different bootstrap samples (random subsets with replacement).
-   - Aggregate predictions by averaging (regression) or majority voting (classification).
-
-2. **Popular Example:** Random Forest
-
----
-
-### Boosting
-
-Boosting reduces bias by training models sequentially, where each model corrects the errors of its predecessor.
-
-1. **Algorithm:**
-   - Assign weights to data points.
-   - Train models iteratively, focusing on misclassified instances.
-   - Aggregate predictions using weighted averages.
-
-2. **Popular Examples:** AdaBoost, Gradient Boosting
-
----
-
-### Stacking
-
-Stacking combines predictions of multiple base learners using a meta-model.
-
-1. **Algorithm:**
-   - Train base learners on the dataset.
-   - Train a meta-learner on predictions from base learners.
-   - Final prediction comes from the meta-learner.
-
-2. **Popular Example:** Stacked Generalization
-
----
-
-## Mathematics of Ensemble Models
-
-### Weighted Averaging
-
-For an ensemble of \( M \) models, the final prediction is:
-
-\[
-\hat{y} = \sum_{i=1}^M w_i \hat{y}_i
-\]
+$$
+\hat{y} = \beta_0 + \beta_1 x
+$$
 
 Where:
-- \( \hat{y}_i \): Prediction of the \( i \)-th model.
-- \( w_i \): Weight assigned to the \( i \)-th model, such that \( \sum_{i=1}^M w_i = 1 \).
+- $\hat{y}$: Predicted value of the dependent variable.
+- $\beta_0$: Intercept (value of $y$ when $x = 0$).
+- $\beta_1$: Slope of the line (rate of change of $y$ with respect to $x$).
+- $x$: Independent variable.
+
+### Multiple Linear Regression
+
+Multiple linear regression extends the simple linear regression model to multiple independent variables:
+
+$$
+\hat{y} = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p
+$$
+
+Where:
+- $p$: Number of independent variables.
+- $x_1, x_2, \dots, x_p$: Independent variables.
+- $\beta_1, \beta_2, \dots, \beta_p$: Coefficients corresponding to each independent variable.
 
 ---
 
-### Bagging Mathematics
+## Mathematics of Linear Regression
 
-1. **Bootstrap Sampling:**
-   Given a dataset \( D \) of size \( N \), generate \( B \) bootstrap samples \( D_1, D_2, \ldots, D_B \), each of size \( N \).
+### Model Equation
 
-2. **Model Training:**
-   Train \( B \) models independently on \( D_1, D_2, \ldots, D_B \).
+The general form of a linear regression model can be expressed in matrix notation as:
 
-3. **Aggregation:**
-   - Regression: \( \hat{y} = \frac{1}{B} \sum_{i=1}^B \hat{y}_i \)
-   - Classification: \( \hat{y} = \text{mode}(\hat{y}_1, \hat{y}_2, \ldots, \hat{y}_B) \)
+$$
+\mathbf{y} = \mathbf{X} \boldsymbol{\beta} + \boldsymbol{\epsilon}
+$$
 
----
+Where:
+- $\mathbf{y}$: Vector of observed values (size $n \times 1$).
+- $\mathbf{X}$: Design matrix of input features (size $n \times (p+1)$), where the first column is all ones (for the intercept).
+- $\boldsymbol{\beta}$: Vector of coefficients (size $(p+1) \times 1$).
+- $\boldsymbol{\epsilon}$: Vector of errors (residuals).
 
-### Boosting Mathematics
+### Cost Function
 
-1. **Weighted Error:**
-   At each iteration \( t \):
-   \[
-   \varepsilon_t = \frac{\sum_{i=1}^N w_i I(\hat{y}_i \neq y_i)}{\sum_{i=1}^N w_i}
-   \]
+The cost function measures the error between the predicted values and the actual values. For linear regression, the cost function is the Mean Squared Error (MSE):
+
+$$
+J(\boldsymbol{\beta}) = \frac{1}{2n} \sum_{i=1}^n (\hat{y}_i - y_i)^2
+$$
+
+In matrix form:
+
+$$
+J(\boldsymbol{\beta}) = \frac{1}{2n} (\mathbf{X} \boldsymbol{\beta} - \mathbf{y})^T (\mathbf{X} \boldsymbol{\beta} - \mathbf{y})
+$$
+
+Where:
+- $\hat{y}_i$: Predicted value for observation $i$.
+- $y_i$: Actual value for observation $i$.
+
+### Gradient Descent Optimization
+
+Gradient descent is an iterative optimization algorithm used to minimize the cost function:
+
+1. **Update Rule:**
+   $$
+   \boldsymbol{\beta} \leftarrow \boldsymbol{\beta} - \alpha \nabla J(\boldsymbol{\beta})
+   $$
+
    Where:
-   - \( w_i \): Weight of the \( i \)-th instance.
-   - \( I(\cdot) \): Indicator function (1 if true, 0 otherwise).
+   - $\alpha$: Learning rate.
+   - $\nabla J(\boldsymbol{\beta})$: Gradient of the cost function.
 
-2. **Model Weight:**
-   \[
-   \alpha_t = \ln \left(\frac{1 - \varepsilon_t}{\varepsilon_t} \right)
-   \]
+2. **Gradient of Cost Function:**
+   $$
+   \nabla J(\boldsymbol{\beta}) = \frac{1}{n} \mathbf{X}^T (\mathbf{X} \boldsymbol{\beta} - \mathbf{y})
+   $$
 
-3. **Weight Update:**
-   \[
-   w_i \leftarrow w_i \exp(\alpha_t I(\hat{y}_i \neq y_i))
-   \]
+### Normal Equation
 
-4. **Final Prediction:**
-   \[
-   \hat{y} = \text{sign} \left( \sum_{t=1}^T \alpha_t \hat{y}_t \right)
-   \]
+An analytical solution to linear regression can be obtained using the Normal Equation:
 
----
+$$
+\boldsymbol{\beta} = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{y}
+$$
 
-## Advantages and Applications
-
-1. **Advantages:**
-   - Improves accuracy and robustness.
-   - Reduces overfitting (e.g., Random Forest).
-   - Handles complex datasets with boosting.
-
-2. **Applications:**
-   - Fraud Detection
-   - Sentiment Analysis
-   - Image Recognition
-   - Financial Forecasting
+This avoids iterative optimization but requires inversion of $\mathbf{X}^T \mathbf{X}$, which can be computationally expensive for large datasets.
 
 ---
 
-Ensemble models have revolutionized machine learning by leveraging multiple learners to enhance performance. By understanding their principles and mathematics, practitioners can build robust, scalable models for real-world applications.
+## Assumptions of Linear Regression
+
+1. **Linearity:** The relationship between independent and dependent variables is linear.
+2. **Independence:** Observations are independent of each other.
+3. **Homoscedasticity:** Constant variance of residuals.
+4. **Normality:** Residuals are normally distributed.
+5. **No Multicollinearity:** Independent variables are not highly correlated.
+
+---
+
+## Applications
+
+- **Predictive Analytics:** House price prediction, stock price forecasting.
+- **Risk Assessment:** Credit scoring, insurance premium calculations.
+- **Scientific Research:** Modeling relationships in experimental data.
+
+---
+
+Linear regression is an essential tool in machine learning, offering simplicity, interpretability, and effectiveness for a wide range of problems. Understanding its mathematics and assumptions is key to applying it correctly and effectively.
 
