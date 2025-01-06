@@ -1,46 +1,129 @@
-**Titanic Logistic Regression**
+# Logistic Regression: A Comprehensive Overview
 
-**Introduction**
+Logistic regression is a fundamental algorithm used for classification tasks. Unlike linear regression, which predicts continuous outcomes, logistic regression is used to predict discrete outcomes by estimating probabilities. This report explores the theory, mathematics, and applications of logistic regression.
 
-In this project, I developed a Logistic Regression model from scratch to classify passenger survival based on the Titanic dataset. This task involved data preprocessing, model implementation, training, and evaluation, providing insights into both the model's performance and the challenges encountered during the process.
+## Table of Contents
 
-**Dataset Overview**
+1. [Introduction](#introduction)
+2. [Logistic Regression Model](#logistic-regression-model)
+   - [The Sigmoid Function](#the-sigmoid-function)
+   - [Model Equation](#model-equation)
+3. [Cost Function](#cost-function)
+4. [Gradient Descent Optimization](#gradient-descent-optimization)
+5. [Assumptions](#assumptions)
+6. [Applications](#applications)
 
-The Titanic dataset contains information about passengers, including attributes such as age, gender, class, fare, and whether they survived the voyage. The dataset requires careful preprocessing to handle missing values and categorical variables before training the model.
+---
 
-**Challenges Faced**
+## Introduction
 
-1. **Missing Values**: The dataset had missing values, particularly in the 'Age' and 'Embarked' columns. These missing values needed to be addressed to avoid bias in the model's predictions.
-   1. **Solution**: I filled missing values in the 'Age' column with the median age and in the 'Embarked' column with the most common embarkation point (mode). This approach helped retain as much data as possible without introducing significant noise.
-1. **Irrelevant Features**: Columns such as 'PassengerId', 'Name', 'Ticket', and 'Cabin' do not provide useful information for survival prediction.
-   1. **Solution**: I dropped these irrelevant columns to simplify the dataset and focus on features that contribute to the prediction.
-1. **Categorical Variables**: The dataset includes categorical features like 'Sex' and 'Embarked', which need to be converted into numerical values for model compatibility.
-   1. **Solution**: I encoded the 'Sex' column using binary mapping (0 for male and 1 for female) and applied one-hot encoding to the 'Embarked' column, ensuring the model could interpret these categorical features effectively.
-1. **Feature Normalization**: Continuous features like 'Age' and 'Fare' can have varying scales, which may affect the model's performance.
-   1. **Solution**: I normalized these continuous features by applying standard scaling (subtracting the mean and dividing by the standard deviation) to ensure they are on a similar scale.
+Logistic regression is a linear model used for binary classification problems. It predicts the probability that an instance belongs to a particular class and applies a decision threshold (usually 0.5) to classify the instance.
 
-**Model Implementation**
+---
 
-I implemented the Logistic Regression model using a class structure that encompassed initialization, training, and prediction.
+## Logistic Regression Model
 
-**Key Steps:**
+### The Sigmoid Function
 
-- **Initialization**: Set the learning rate and number of iterations, and initialized weights and bias.
-- **Training**: Implemented the gradient descent algorithm to optimize weights and bias using the sigmoid function for predictions.
-- **Prediction**: Classified predictions based on a threshold of 0.5.
+The sigmoid (or logistic) function maps real numbers to probabilities in the range (0, 1). It is defined as:
 
-**Model Training and Evaluation**
+$$
+\sigma(z) = \frac{1}{1 + e^{-z}}
+$$
 
-I split the dataset into training and testing sets (80-20 split) and trained the model using the training set. The evaluation was done using accuracy and a confusion matrix to assess the model's performance.
+Where:
+- $z$ is the linear combination of input features and their weights.
+- $\sigma(z)$ outputs the predicted probability.
 
-**Results**
+### Model Equation
 
-- **Accuracy**: The model achieved an accuracy of approximately **: 0.8324** 
-- **Confusion Matrix**: I visualized the confusion matrix to show true vs. predicted classifications, providing insights into the model's strengths and weaknesses.
+The logistic regression model predicts the probability of the positive class ($y = 1$):
 
-**Visualization**
+$$
+P(y=1|\mathbf{x}) = \hat{y} = \sigma(\mathbf{w}^T \mathbf{x} + b)
+$$
 
-A heatmap of the confusion matrix was created to visualize the performance, showing the distribution of true positives, true negatives, false positives, and false negatives.
-**Conclusion**
+Where:
+- $\mathbf{x}$: Feature vector.
+- $\mathbf{w}$: Weight vector.
+- $b$: Bias term.
+- $\hat{y}$: Predicted probability.
 
-The project enhanced my understanding of implementing a Logistic Regression model from scratch, emphasizing the importance of data preprocessing and feature engineering. I successfully addressed several challenges, enabling me to develop a model that classifies passenger survival with reasonable accuracy. Future work could explore hyperparameter tuning and advanced feature selection techniques to improve the model's performance further.
+The decision boundary is defined as:
+
+$$
+\mathbf{w}^T \mathbf{x} + b = 0
+$$
+
+---
+
+## Cost Function
+
+The cost function for logistic regression is based on the likelihood of the data. The objective is to maximize the likelihood of the observed data under the model. The negative log-likelihood is minimized instead, leading to the logistic regression cost function:
+
+$$
+J(\mathbf{w}, b) = - \frac{1}{n} \sum_{i=1}^n \left[ y_i \log(\hat{y}_i) + (1 - y_i) \log(1 - \hat{y}_i) \right]
+$$
+
+Where:
+- $n$: Number of training examples.
+- $y_i$: Actual label for the $i$-th example.
+- $\hat{y}_i$: Predicted probability for the $i$-th example.
+
+---
+
+## Gradient Descent Optimization
+
+Gradient descent is used to minimize the cost function and find optimal parameters $\mathbf{w}$ and $b$.
+
+### Gradient of the Cost Function
+
+The gradients of the cost function with respect to the parameters are:
+
+1. Gradient with respect to weights:
+   $$
+   \frac{\partial J}{\partial \mathbf{w}} = \frac{1}{n} \sum_{i=1}^n (\hat{y}_i - y_i) \mathbf{x}_i
+   $$
+
+2. Gradient with respect to bias:
+   $$
+   \frac{\partial J}{\partial b} = \frac{1}{n} \sum_{i=1}^n (\hat{y}_i - y_i)
+   $$
+
+### Update Rules
+
+1. Update weights:
+   $$
+   \mathbf{w} \leftarrow \mathbf{w} - \alpha \frac{\partial J}{\partial \mathbf{w}}
+   $$
+
+2. Update bias:
+   $$
+   b \leftarrow b - \alpha \frac{\partial J}{\partial b}
+   $$
+
+Where:
+- $\alpha$: Learning rate.
+
+---
+
+## Assumptions
+
+1. **Linearity of Features:** Logistic regression assumes a linear relationship between input features and the log-odds of the target.
+2. **Independence of Observations:** Observations are assumed to be independent of each other.
+3. **No Multicollinearity:** Independent variables should not be highly correlated.
+4. **Sufficient Sample Size:** Logistic regression performs best with a large sample size.
+
+---
+
+## Applications
+
+1. **Healthcare:** Disease diagnosis, patient risk prediction.
+2. **Finance:** Credit scoring, fraud detection.
+3. **Marketing:** Customer segmentation, churn prediction.
+4. **Natural Language Processing:** Sentiment analysis, spam detection.
+
+---
+
+Logistic regression is a foundational tool in machine learning, offering simplicity, interpretability, and effectiveness for binary classification tasks. Understanding its mathematical foundations is essential for its proper application and extension to more complex problems like multi-class classification or regularized logistic regression.
+
