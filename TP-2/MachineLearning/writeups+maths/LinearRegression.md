@@ -137,5 +137,5 @@ This avoids iterative optimization but requires inversion of $\mathbf{X}^T \math
 
 ---
 
-Linear regression is an essential tool in machine learning, offering simplicity, interpretability, and effectiveness for a wide range of problems. Understanding its mathematics and assumptions is key to applying it correctly and effectively.
+Linear regression is an essential tool in machine learning, offering simplicity, interpretability, and effectiveness for a wide range of problems. Understanding its mathematics and assumptions is key to applying it correctly and effectively..
 
