@@ -36,10 +36,14 @@ This repository contains all my learnings, write-ups, and projects from the Cryp
    - Identified patterns in image datasets to uncover cheating players, leading to the flag.
    - Used filtering methods to extract pixel data (e.g., 65536-sized pixel arrays) and interpret encoded information.
 
+3. **Mumbo Dumbo (AI)**
+   - Task involved analyzing machine learning predictions and decision boundaries.
+   - Implemented troubleshooting techniques for model accuracy issues.
+   
 ### Unsolved Challenge:
 
 - **Firewall Farewell (AI)**
-  - Explored the challenge but could not arrive at a solution.
+  - Explored the challenge but could not submit the flag due to last minute problems(got one character wrong).
   - Gained insights into AI-based firewall mechanisms and anomaly detection.
 
 ---
