@@ -27,7 +27,7 @@ At each split of a tree, a random subset of features is selected for considerati
 
 If the total number of features is \( p \):
 - Typically, \( m = \sqrt{p} \) features are considered for classification.
-- For regression, \( m \approx p/3 \).
+- For regression, \( m \approx \frac{p}{3} \).
 
 ---
 
@@ -84,6 +84,5 @@ Random Forest is a versatile and reliable algorithm suitable for a wide range of
 ---
 
 ## References
-- Breiman, L. (2001). Random Forests. Machine Learning, 45(1), 5–32.
+- Breiman, L. (2001). Random Forests. *Machine Learning*, 45(1), 5–32.
 - Scikit-learn Documentation: https://scikit-learn.org/
-x
