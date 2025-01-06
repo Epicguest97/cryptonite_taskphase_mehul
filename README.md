@@ -39,7 +39,7 @@ This repository contains all my learnings, write-ups, and projects from the Cryp
 3. **Mumbo Dumbo (AI)**
    - Task involved analyzing machine learning predictions and decision boundaries.
    - Implemented troubleshooting techniques for model accuracy issues.
-   
+
 ### Unsolved Challenge:
 
 - **Firewall Farewell (AI)**
@@ -68,6 +68,8 @@ This repository contains all my learnings, write-ups, and projects from the Cryp
 - Gained hands-on experience with core libraries for data analysis and AI:
   1. **Pandas**
   2. **NumPy**
+  3. **Matplotlib**
+  4. **Seaborn**
 
 - Implemented machine learning models from scratch to understand their mathematical principles:
 
