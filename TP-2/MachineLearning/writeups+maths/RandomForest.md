@@ -33,26 +33,26 @@ Random Forest employs **Bootstrap Aggregating (Bagging)** to create an ensemble 
 1. **Bootstrapping**: Randomly sample the training data **with replacement** to create multiple subsets (bootstrap samples).
 2. **Bagging**: Train a separate decision tree on each bootstrap sample, and aggregate their predictions.
 
-For a dataset \( D = \{(x_1, y_1), (x_2, y_2), \ldots, (x_n, y_n)\} \):
-1. Generate \( B \) bootstrapped datasets \( D_1, D_2, \ldots, D_B \).
-2. Train a decision tree \( h_b(x) \) on each dataset \( D_b \).
+For a dataset $\( D = \{(x_1, y_1), (x_2, y_2), \ldots, (x_n, y_n)\} \)$:
+1. Generate \( B \) bootstrapped datasets $\( D_1, D_2, \ldots, D_B \)$.
+2. Train a decision tree $\( h_b(x) \) on each dataset \( D_b \)$.
 3. Aggregate predictions:
    - **Classification**: Use majority voting:
-     $$
-     \hat{y} = \text{mode}\{h_1(x), h_2(x), \ldots, h_B(x)\}
-     $$
+     
+     $\hat{y} = \text{mode}\{h_1(x), h_2(x), \ldots, h_B(x)\}$
+     
    - **Regression**: Compute the average:
-     $$
-     \hat{y} = \frac{1}{B} \sum_{b=1}^B h_b(x)
-     $$
+     
+     $\hat{y} = \frac{1}{B} \sum_{b=1}^B h_b(x)$
+     
 
 ---
 
 ### Feature Subset Selection
 
-To decorrelate trees and reduce overfitting, Random Forest selects a random subset of features \( m \) (out of \( p \)) at each split in a decision tree:
-- For classification, \( m = \sqrt{p} \).
-- For regression, \( m = \frac{p}{3} \).
+To decorrelate trees and reduce overfitting, Random Forest selects a random subset of features \( m \) (out of $\( p \)$) at each split in a decision tree:
+- For classification, $\( m = \sqrt{p} \)$.
+- For regression, $\( m = \frac{p}{3} \)$.
 
 This process increases diversity among trees, improving overall model performance.
 
@@ -67,15 +67,15 @@ $$
 H(S) = - \sum_{i=1}^c p_i \log_2(p_i)
 $$
 Where:
-- \( c \): Number of classes.
-- \( p_i \): Proportion of samples belonging to class \( i \).
+- $\( c \)$: Number of classes.
+- $\( p_i \)$: Proportion of samples belonging to class \( i \).
 
 ### Gini Impurity
 
 Gini Impurity, another criterion for measuring node impurity, is defined as:
-$$
-G(S) = 1 - \sum_{i=1}^c p_i^2
-$$
+
+$G(S) = 1 - \sum_{i=1}^c p_i^2$
+
 Gini Impurity is computationally efficient and often used in decision trees.
 
 ### Mean Squared Error (MSE)
@@ -85,9 +85,9 @@ $$
 \text{MSE} = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y}_i)^2
 $$
 Where:
-- \( n \): Number of samples.
-- \( y_i \): Actual target value for the \( i \)-th sample.
-- \( \hat{y}_i \): Predicted value for the \( i \)-th sample.
+- $\( n \)$: Number of samples.
+- $\( y_i \)$: Actual target value for the \( i \)-th sample.
+- $\( \hat{y}_i \)$: Predicted value for the \( i \)-th sample.
 
 ---
 
